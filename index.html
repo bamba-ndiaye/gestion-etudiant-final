@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des étudiants UNCHK</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-container">
+      <div>
+        <p class="subtitle-top">ESPACE ADMINISTRATION</p>
+        <h1>Gestion des étudiants UNCHK</h1>
+        <p class="subtitle-bottom">Gérez les inscriptions et suivez les résultats.</p>
+      </div>
+      <div class="header-icon">🎓</div>
+    </div>
+  </header>
+
+  <div class="main-container">
+
+    <!-- Statistiques -->
+    <section class="stats-grid">
+      <div class="card stat-card">
+        <span class="stat-label">Total étudiants</span>
+        <span class="stat-value" id="stat-total">0</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-label">Moyenne générale</span>
+        <span class="stat-value" id="stat-moyenne">0,00/20</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-label">Étudiants admis</span>
+        <span class="stat-value" id="stat-admis">0</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-label">Meilleur(e) étudiant(e)</span>
+        <span class="stat-value stat-value-nom" id="stat-meilleur">-</span>
+        <span class="stat-detail" id="stat-meilleur-note"></span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-label">Taux de réussite</span>
+        <span class="stat-value" id="stat-taux">0 %</span>
+      </div>
+    </section>
+
+    <!-- Formulaire -->
+    <section class="card form-card">
+      <h2>Ajouter un étudiant</h2>
+      <p class="success-msg" id="mgs"></p>
+      <form class="form-grid" id="form">
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" id="nom" placeholder="Ex. : Diallo">
+        </div>
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" id="prenom" placeholder="Ex. : Awa">
+        </div>
+        <div class="form-group">
+          <label>Adresse e-mail</label>
+          <input type="email" id="email" placeholder="awa@example.com">
+        </div>
+        <div class="form-group">
+          <label>Classe</label>
+          <input type="text" id="classe" placeholder="Ex. : L1 Informatique">
+        </div>
+        <div class="form-group">
+          <label>Note sur 20</label>
+          <input type="text" id="note" placeholder="Ex. : 15.5">
+        </div>
+        <div class="form-group full-width">
+          <p class="error-msg" id="erreur"></p>
+          <button type="submit" id="btn" class="btn-submit">Ajouter l'étudiant</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Liste -->
+    <section class="card table-card">
+      <div class="table-header">
+        <div>
+          <h2>Liste des étudiants</h2>
+          <p class="table-subtitle">Consultez et gérez les inscriptions.</p>
+        </div>
+
+        <div class="filters">
+          <input type="text" id="recherche" placeholder="Rechercher un étudiant..." class="search-input">
+          <select id="filtre-classe" class="filter-select">
+            <option value="">Toutes les classes</option>
+          </select>
+          <select id="tri-classe" class="filter-select">
+            <option value="">Aucun tri</option>
+            <option value="asc">Classe A → Z</option>
+            <option value="desc">Classe Z → A</option>
+          </select>
+
+          <!-- Export / Import CSV -->
+          <button type="button" id="btn-export" class="btn-action btn-edit">Exporter CSV</button>
+          <button type="button" id="btn-import" class="btn-action btn-edit">Importer CSV</button>
+          <input type="file" id="fichier-csv" accept=".csv" style="display:none;">
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>NOM COMPLET</th>
+              <th>E-MAIL</th>
+              <th>CLASSE</th>
+              <th>NOTE</th>
+              <th>RÉSULTAT</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
